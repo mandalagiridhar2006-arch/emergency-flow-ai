@@ -1,0 +1,150 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-corridor: var(--corridor);
+  --color-corridor-foreground: var(--corridor-foreground);
+  --color-tech: var(--tech);
+  --color-warn: var(--warn);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+}
+
+:root {
+  color-scheme: dark;
+  --background: oklch(0.16 0.022 258);
+  --foreground: oklch(0.96 0.008 250);
+  --card: oklch(0.2 0.025 260);
+  --card-foreground: oklch(0.96 0.008 250);
+  --popover: oklch(0.2 0.025 260);
+  --popover-foreground: oklch(0.96 0.008 250);
+  --primary: oklch(0.63 0.235 25);
+  --primary-foreground: oklch(0.99 0.01 90);
+  --secondary: oklch(0.27 0.02 260);
+  --secondary-foreground: oklch(0.96 0.008 250);
+  --muted: oklch(0.26 0.018 260);
+  --muted-foreground: oklch(0.7 0.02 258);
+  --accent: oklch(0.82 0.19 150);
+  --accent-foreground: oklch(0.2 0.06 155);
+  --destructive: oklch(0.63 0.235 25);
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.75 0.13 220);
+  --radius: 0.7rem;
+
+  --corridor: oklch(0.82 0.19 150);
+  --corridor-foreground: oklch(0.2 0.06 155);
+  --tech: oklch(0.78 0.13 220);
+  --warn: oklch(0.82 0.16 78);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/40;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+}
+
+@keyframes corridor-flow {
+  to {
+    stroke-dashoffset: -60;
+  }
+}
+.animate-corridor-flow {
+  animation: corridor-flow 0.9s linear infinite;
+}
+
+@keyframes signal-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  80%,
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+.animate-signal-ping {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: signal-ping 1.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes light-flash {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0.25;
+  }
+}
+.animate-light-flash {
+  animation: light-flash 0.55s steps(1, end) infinite;
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+.animate-soft-pulse {
+  animation: soft-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+.animate-sweep {
+  animation: sweep 2.2s ease-in-out infinite;
+}
+
+.grid-texture {
+  background-image:
+    linear-gradient(to right, oklch(1 0 0 / 4%) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(1 0 0 / 4%) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
