@@ -195,7 +195,7 @@ export function useCorridorSimulation(): CorridorState {
           const newCount = clearedJunctionsRef.current.size
           setClearedCount(newCount)
           pushEvent(
-            `Junction ${s.id} (${s.name}) passed [${newCount}/4] — Emergency hold released, signal restored to normal traffic cycle`,
+            `Junction ${s.id} (${s.name}) passed [${newCount}/4] — Emergency priority released. Normal traffic operation restored.`,
             'coordinate',
           )
         }
@@ -207,7 +207,7 @@ export function useCorridorSimulation(): CorridorState {
         setProgress(1)
         setTimeSaved(TOTAL_TIME_SAVED)
         setClearedCount(SIGNALS.length)
-        setCurrentStep(9)
+        setCurrentStep(5)
         setPhase('arrived')
         setDriverWarning(false)
         setCorridorActive(false)
@@ -241,7 +241,7 @@ export function useCorridorSimulation(): CorridorState {
           'arrived',
         )
         pushEvent(
-          'Corridor status: RELEASED / COMPLETED — All arterial signals restored to automated city grid timing',
+          'Corridor status: RELEASED / COMPLETED — Normal traffic operation restored across all intersections',
           'corridor',
         )
         isRunningRef.current = false
@@ -342,7 +342,7 @@ export function useCorridorSimulation(): CorridorState {
       () => {
         setCoordinating(true)
         pushEvent(
-          'Coordinating simulated traffic signal controllers — pre-empting cross traffic (Signals cycling AMBER → RED for cross streets)',
+          'Automated Signal Coordination: Temporary priority is granted to the emergency route (Signals cycling AMBER → RED for cross streets)',
           'coordinate',
         )
       },
@@ -360,7 +360,6 @@ export function useCorridorSimulation(): CorridorState {
           `Driver Alert Broadcast: "AMBULANCE APPROACHING — CLEAR THE WAY" issued to connected vehicles along corridor`,
           'corridor',
         )
-        setCurrentStep(8)
         pushEvent(
           `Ambulance ${selectedAmbulance.id} entering green corridor — transit in progress`,
           'transit',
@@ -369,10 +368,12 @@ export function useCorridorSimulation(): CorridorState {
       },
     ]
 
+    const stepMapping = [0, 0, 1, 1, 2, 2, 3, 4]
+
     actions.forEach((fn, i) => {
       const delay = i === 0 ? 300 : i * stepDuration
       const t = setTimeout(() => {
-        setCurrentStep(i)
+        setCurrentStep(stepMapping[i])
         fn()
       }, delay)
       timersRef.current.push(t)

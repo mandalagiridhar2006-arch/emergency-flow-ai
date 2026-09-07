@@ -45,16 +45,19 @@ export function TopBar({ state }: { state: CorridorState }) {
           <Siren className="h-5 w-5 text-primary animate-pulse" />
         </div>
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <h1 className="text-lg font-semibold leading-tight tracking-tight text-balance">
               EmergencyFlow <span className="text-primary">AI</span>
             </h1>
-            <span className="rounded border border-primary/30 bg-primary/10 px-1.5 py-0.2 text-[10px] font-mono font-medium text-primary">
-              SIMULATOR
+            <span className="rounded border border-primary/40 bg-primary/15 px-2 py-0.5 text-[10px] font-mono font-semibold tracking-wide text-primary shadow-[0_0_12px_-3px_var(--primary)]">
+              SMART VEHICLE MOBILITY SYSTEM
+            </span>
+            <span className="hidden sm:inline-flex rounded border border-tech/30 bg-tech/10 px-1.5 py-0.5 text-[10px] font-mono text-tech">
+              AI-POWERED INTELLIGENT MOBILITY
             </span>
           </div>
           <p className="text-xs text-muted-foreground">
-            Multimodal Green Corridor Orchestration System
+            Intelligent Emergency Mobility & Traffic Coordination System
           </p>
         </div>
       </div>
@@ -150,6 +153,11 @@ export function TopBar({ state }: { state: CorridorState }) {
               </span>
             </div>
           )}
+        </div>
+
+        <div className="hidden items-center gap-1.5 rounded-full border border-border bg-muted/30 px-2.5 py-0.5 font-mono text-[10px] text-muted-foreground lg:flex">
+          <span className="h-1.5 w-1.5 rounded-full bg-tech" />
+          <span>SIH 2026 • SIH26203</span>
         </div>
 
         <div className="hidden font-mono text-sm tabular-nums text-muted-foreground md:block">

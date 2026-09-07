@@ -35,12 +35,12 @@ function SimulatedCCTVViewport({ state }: { state: CorridorState }) {
             }`}
           />
           <span className="font-semibold text-foreground">
-            {cameraActive ? 'CAM-04 · LIVE FEED' : 'CAM-04 · 4TH & MAIN'}
+            {cameraActive ? 'CAM-04 · SIMULATED FEED' : 'CAM-04 · 4TH & MAIN'}
           </span>
         </span>
         <span className="text-[9px] font-mono">
           {cameraActive ? (
-            <span className="font-semibold text-primary">● REC 30FPS</span>
+            <span className="font-semibold text-primary">● SIMULATED 30FPS</span>
           ) : isScanning ? (
             <span className="text-warn">SCANNING...</span>
           ) : (
@@ -85,14 +85,14 @@ function SimulatedCCTVViewport({ state }: { state: CorridorState }) {
           {isScanning ? (
             <span className="animate-pulse text-tech">Analyzing optical street traffic...</span>
           ) : (
-            <span>CCTV Vision Neural Net Ready</span>
+            <span>Simulated Vision Model Ready</span>
           )}
         </div>
       )}
 
       {/* Bottom Telemetry */}
       <div className="absolute bottom-1 left-2 right-2 flex justify-between text-[8px] text-muted-foreground">
-        <span>SENSOR: RGB-HD-CCTV</span>
+        <span>SENSOR: SIMULATED OPTICAL FEED</span>
         <span>OPTICAL LOCK: {cameraActive ? 'ACTIVE' : 'IDLE'}</span>
       </div>
     </div>
@@ -121,7 +121,7 @@ function SimulatedAudioSpectrum({ state }: { state: CorridorState }) {
       <div className="mb-1.5 flex items-center justify-between text-[9px]">
         <span className="flex items-center gap-1 text-muted-foreground">
           <Mic className="h-3 w-3 text-warn" />
-          Acoustic Mic Array
+          Simulated Acoustic Input
         </span>
         <span className="font-semibold text-warn">
           {sirenActive ? `${sirenAudioLevel} dB · SIREN MATCH` : '42 dB · AMBIENT'}
@@ -256,8 +256,8 @@ export function DetectionPanel({ state }: { state: CorridorState }) {
         {/* Optical / CCTV detection */}
         <DetectionCard
           icon={Camera}
-          title="Camera Detection (CCTV)"
-          detail="Vision model · Bounding box lock"
+          title="Camera Input — Prototype/Simulated"
+          detail="Simulated vision model · Bounding box lock"
           tone="var(--corridor)"
           active={cameraActive}
           status={
@@ -275,8 +275,8 @@ export function DetectionPanel({ state }: { state: CorridorState }) {
         {/* Acoustic / Siren detection */}
         <DetectionCard
           icon={Volume2}
-          title="Siren Detection (Audio)"
-          detail="Microphone array · 850–960 Hz"
+          title="Siren Input — Prototype/Simulated"
+          detail="Simulated microphone input · 850–960 Hz"
           tone="var(--warn)"
           active={sirenActive}
           status={!scanning ? 'STANDBY' : sirenActive ? 'ACTIVE' : 'LISTENING'}
@@ -306,7 +306,7 @@ export function DetectionPanel({ state }: { state: CorridorState }) {
                       : 'text-muted-foreground'
                 }`}
               />
-              Multimodal Fusion Engine
+              Multimodal Fusion Verification
             </span>
             <span
               className={`font-mono text-[10px] font-semibold uppercase ${
@@ -319,7 +319,7 @@ export function DetectionPanel({ state }: { state: CorridorState }) {
 
           <p className="mt-1 text-[11px] text-muted-foreground leading-tight">
             {verified
-              ? 'CCTV Visual (98.4%) + Siren Acoustic (96.2%) confirmed. Emergency corridor authorized.'
+              ? 'Optical detection (98.4%) + Siren acoustic (96.2%) confirmed. Emergency priority authorized.'
               : scanning
                 ? 'Cross-correlating camera bounding box with acoustic frequency signature...'
                 : 'Awaiting simultaneous optical & acoustic confirmation from municipal sensors.'}

@@ -106,8 +106,8 @@ export function CorridorStatus({ state }: { state: CorridorState }) {
             <Clock className="h-3.5 w-3.5 text-corridor" />
             Estimated time saved
           </div>
-          <span className="font-mono text-[10px] text-corridor uppercase tracking-wider">
-            Active Wave
+          <span className="font-mono text-[9px] font-semibold text-corridor uppercase tracking-wider rounded border border-corridor/30 bg-corridor/10 px-1.5 py-0.2">
+            SIMULATION RESULT
           </span>
         </div>
         <div className="mt-1 flex items-baseline justify-between">
@@ -119,6 +119,43 @@ export function CorridorStatus({ state }: { state: CorridorState }) {
             Goal: 4:12 min
           </span>
         </div>
+      </div>
+
+      {/* Signal Coordination Priority & Traffic Restoration Notice */}
+      <div
+        className={`mb-3 rounded-lg border px-3 py-2 text-xs transition-colors ${
+          phase === 'arrived'
+            ? 'border-tech/40 bg-tech/10 text-tech'
+            : corridorActive
+              ? 'border-corridor/40 bg-corridor/10 text-corridor'
+              : 'border-border/60 bg-muted/20 text-muted-foreground'
+        }`}
+      >
+        <p className="font-semibold leading-tight flex items-center gap-1.5">
+          <span
+            className={`h-1.5 w-1.5 rounded-full ${
+              phase === 'arrived'
+                ? 'bg-tech'
+                : corridorActive
+                  ? 'bg-corridor animate-ping'
+                  : 'bg-muted-foreground'
+            }`}
+          />
+          {phase === 'arrived'
+            ? 'Normal traffic operation restored.'
+            : corridorActive
+              ? 'Temporary priority is granted to the emergency route.'
+              : clearedCount > 0
+                ? 'Junction passed · Normal traffic operation restored.'
+                : 'Standard municipal signal cycle active.'}
+        </p>
+        <p className="mt-0.5 text-[10px] opacity-85">
+          {phase === 'arrived'
+            ? 'Emergency corridor complete. Signals restored to normal automated cycle.'
+            : corridorActive
+              ? 'Cross-traffic temporarily held. Signals restore immediately after vehicle passes.'
+              : 'Signals pre-empt automatically upon verified emergency vehicle detection.'}
+        </p>
       </div>
 
       {/* 4 Metric grid */}
@@ -221,7 +258,7 @@ export function CorridorStatus({ state }: { state: CorridorState }) {
 
       {/* Safety & Prototype note */}
       <p className="mt-2.5 text-center text-[10px] text-muted-foreground/70">
-        Simulated municipal traffic control in software. Safe demo mode.
+        Simulation Result · Temporary priority granted to corridor, normal traffic operation restored post-passage.
       </p>
     </section>
   )

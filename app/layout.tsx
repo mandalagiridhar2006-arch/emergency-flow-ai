@@ -10,9 +10,9 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'EmergencyFlow AI — Green Corridor Control',
+  title: 'EmergencyFlow AI — Intelligent Emergency Mobility & Traffic Coordination System',
   description:
-    'AI-powered Emergency Green Corridor system that clears traffic intersections to reduce ambulance delays. Software prototype with simulated detection and signal control.',
+    'Smart Vehicles software prototype for SIH 2026 (SIH26203): AI-powered intelligent emergency mobility and traffic coordination system with simulated vehicle detection, route intelligence, and dynamic signal coordination.',
   generator: 'v0.app',
 }
 

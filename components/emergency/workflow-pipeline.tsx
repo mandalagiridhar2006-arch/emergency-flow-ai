@@ -30,9 +30,22 @@ export function WorkflowPipeline({ state }: { state: CorridorState }) {
 
           let dynamicDetail = step.detail
           if (step.key === 'detect') {
-            dynamicDetail = `CCTV vehicle detection · ${selectedAmbulance.id}`
+            dynamicDetail = `Optical tracking · ${selectedAmbulance.id}`
+          } else if (step.key === 'verify') {
+            dynamicDetail = 'Multimodal CCTV + siren fusion'
           } else if (step.key === 'route') {
-            dynamicDetail = selectedHospital.name
+            dynamicDetail = `Route locked → ${selectedHospital.shortName}`
+          } else if (step.key === 'coordinate') {
+            dynamicDetail = 'Temporary priority granted to corridor'
+          } else if (step.key === 'alert') {
+            dynamicDetail = 'V2X driver alert broadcast'
+          } else if (step.key === 'restore') {
+            dynamicDetail =
+              phase === 'arrived'
+                ? 'All junctions restored to normal cycle'
+                : state.clearedCount > 0
+                  ? `${state.clearedCount}/4 junctions restored to normal`
+                  : 'Pending vehicle clearance'
           }
 
           return (

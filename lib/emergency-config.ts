@@ -130,38 +130,34 @@ export interface WorkflowStep {
 export const WORKFLOW_STEPS: WorkflowStep[] = [
   {
     key: 'detect',
-    label: 'Detect Ambulance',
-    detail: 'CCTV vehicle detection',
+    label: 'Detect Vehicle',
+    detail: 'Optical AI vehicle detection',
   },
-  {
-    key: 'camera',
-    label: 'Camera Verification',
-    detail: 'Visual signature locked',
-  },
-  { key: 'siren', label: 'Siren Detection', detail: 'Acoustic pattern matched' },
   {
     key: 'verify',
     label: 'Verify Emergency',
-    detail: 'Multi-sensor fusion',
+    detail: 'Multimodal sensor fusion',
   },
-  { key: 'route', label: 'Predict Route', detail: 'Destination corridor locked' },
   {
-    key: 'intersections',
-    label: 'Identify Intersections',
-    detail: '4 corridor junctions',
+    key: 'route',
+    label: 'Predict Route',
+    detail: 'Optimal destination trajectory',
   },
   {
     key: 'coordinate',
     label: 'Coordinate Signals',
-    detail: 'Pre-empt cross traffic',
+    detail: 'Temporary arterial priority',
   },
   {
-    key: 'corridor',
-    label: 'Activate Green Corridor',
-    detail: 'Emergency corridor active',
+    key: 'alert',
+    label: 'Alert Drivers',
+    detail: 'Connected vehicle broadcast',
   },
-  { key: 'transit', label: 'Ambulance Transit', detail: 'Priority green wave' },
-  { key: 'arrived', label: 'Hospital Arrival', detail: 'Corridor released' },
+  {
+    key: 'restore',
+    label: 'Restore Traffic',
+    detail: 'Normal signal cycles restored',
+  },
 ]
 
 // Total simulated seconds saved versus normal signalling.

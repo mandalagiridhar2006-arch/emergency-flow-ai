@@ -124,6 +124,12 @@ function MissionCompleteOverlay({
           <CheckCircle2 className="h-8 w-8 text-corridor" />
         </div>
 
+        <div className="mb-1">
+          <span className="rounded border border-corridor/40 bg-corridor/15 px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-corridor">
+            SIMULATION RESULT
+          </span>
+        </div>
+
         <h3 className="text-xl font-bold tracking-tight text-foreground">
           MISSION COMPLETE
         </h3>
@@ -175,7 +181,7 @@ function MissionCompleteOverlay({
             <p className="mt-1 font-mono text-lg font-bold text-warn">
               {missionStats.corridorDuration}
             </p>
-            <span className="text-[10px] text-muted-foreground">Signals restored to normal</span>
+            <span className="text-[10px] text-muted-foreground">Normal traffic operation restored</span>
           </div>
         </div>
 
@@ -485,9 +491,11 @@ export function CityMap({ state }: { state: CorridorState }) {
       </div>
 
       {(corridorActive || phase === 'arrived') && (
-        <div className="pointer-events-none absolute right-4 top-4 rounded-md border border-corridor/40 bg-corridor/15 px-3 py-1.5 backdrop-blur shadow-[0_0_16px_-4px_var(--corridor)]">
+        <div className="pointer-events-none absolute right-4 top-4 rounded-md border border-corridor/40 bg-card/85 px-3 py-1.5 backdrop-blur shadow-[0_0_16px_-4px_var(--corridor)]">
           <span className="font-mono text-xs font-semibold text-corridor">
-            {phase === 'arrived' ? 'CORRIDOR RELEASED · ARRIVED' : 'EMERGENCY CORRIDOR ACTIVE'}
+            {phase === 'arrived'
+              ? 'CORRIDOR RELEASED · NORMAL TRAFFIC OPERATION RESTORED'
+              : 'EMERGENCY CORRIDOR ACTIVE · TEMPORARY PRIORITY GRANTED'}
           </span>
         </div>
       )}
